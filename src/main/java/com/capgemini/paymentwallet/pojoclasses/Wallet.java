@@ -11,14 +11,14 @@ import javax.persistence.Table;
 public class Wallet {
 	@Id
 	private int walletId;
-	private BigDecimal balance;
+	private BigDecimal walletbalance;
 	public Wallet() {
 		super();
 	}
-	public Wallet(int walletId, BigDecimal balance) {
+	public Wallet(int walletId, BigDecimal walletbalance) {
 		super();
 		this.walletId = walletId;
-		this.balance = balance;
+		this.walletbalance = walletbalance;
 	}
 	public int getWalletId() {
 		return walletId;
@@ -26,15 +26,15 @@ public class Wallet {
 	public void setWalletId(int walletId) {
 		this.walletId = walletId;
 	}
-	public BigDecimal getBalance() {
-		return balance;
+	public BigDecimal getWalletbalance() {
+		return walletbalance;
 	}
 	public void setBalance(BigDecimal balance) {
-		this.balance = balance;
+		this.walletbalance = walletbalance;
 	}
 	@Override
 	public String toString() {
-		return "Wallet [walletId=" + walletId + ", balance=" + balance + "]";
+		return "Wallet [walletId=" + walletId + ", walletbalance=" + walletbalance + "]";
 	}
 	
 	

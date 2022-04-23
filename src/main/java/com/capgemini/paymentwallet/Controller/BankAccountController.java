@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.paymentwallet.Service.BankAccountService;
 import com.capgemini.paymentwallet.pojoclasses.BankAccount;
+import com.capgemini.paymentwallet.pojoclasses.Wallet;
 
 @RestController
 public class BankAccountController {
@@ -20,9 +21,14 @@ public class BankAccountController {
 	public List<BankAccount> getAllBankAccounts(){
 		return baservice.getAllBankAccounts();
 	}
-	@RequestMapping(value="bankaccount/addaccount",method=RequestMethod.POST)
+	@RequestMapping(value="bankaccount/addaccount1",method=RequestMethod.POST)
 	public BankAccount addBankAccount(@RequestBody BankAccount ba) {
 		return baservice.addBankAccount(ba);
+		
+	}
+	@RequestMapping(value="bankaccount/addaccount",method=RequestMethod.POST)
+	public Wallet addBankAccount1(@RequestBody BankAccount ba) {
+		return baservice.addBankAccount1(ba);
 		
 	}
 	@RequestMapping(value="bankaccount/getba/{id}",method=RequestMethod.GET)
@@ -33,9 +39,9 @@ public class BankAccountController {
 	public String deleteBankAccount(@PathVariable int id) {
 		return baservice.deleteBankAccount(id);
 	}
-	/*@RequestMapping(value="bankaccount/update/{id}",method=RequestMethod.PUT)
-	public BankAccount updateBankAccount(@PathVariable int id) {
-		return baservice.updateBankAccount(id);
-	}*/
+	@RequestMapping(value="bankaccount/update/{id}",method=RequestMethod.PUT)
+	public BankAccount updateBankAccount(@PathVariable int id,@RequestBody BankAccount ba) {
+		return baservice.updateBankAccount(id,ba);
+	}
 
 }
