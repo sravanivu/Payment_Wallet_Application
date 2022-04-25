@@ -11,8 +11,8 @@ public interface BenificiaryDetailsRepository extends JpaRepository<BenificiaryD
 	
 	@Query(value="select bd from BenificiaryDetails bd where bd.mobileNumber=?1")
 	BenificiaryDetails getBenificiaryDetailsofmobilenumber(@Param("mobileNumber")String mobileNumber);
-	/*
+	
 	@Query(value="select c from Customer c where c.cId=?1")
-	BenificiaryDetails getBenificiaryDetailsByCustomerId(@param("cId")int cId,Customer cus);
-	*/
+	BenificiaryDetails getBenificiaryDetailsByCustomerId(@Param("cId")int cId);
+	
 }

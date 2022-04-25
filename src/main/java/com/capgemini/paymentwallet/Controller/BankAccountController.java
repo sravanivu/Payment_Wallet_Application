@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,7 @@ import com.capgemini.paymentwallet.pojoclasses.Wallet;
 public class BankAccountController {
 	@Autowired(required=true)
 	BankAccountService baservice;
+	
 	@RequestMapping(value="bankaccount/getallba",method=RequestMethod.GET)
 	public List<BankAccount> getAllBankAccounts(){
 		return baservice.getAllBankAccounts();
@@ -43,5 +45,8 @@ public class BankAccountController {
 	public BankAccount updateBankAccount(@PathVariable int id,@RequestBody BankAccount ba) {
 		return baservice.updateBankAccount(id,ba);
 	}
-
+	@PostMapping(value="bank/add")
+	public BankAccount addBankA(@RequestBody BankAccount ba) {
+		return baservice.addBankA(ba);
+	}
 }

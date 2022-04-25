@@ -39,8 +39,8 @@ public class CustomerController {
 			return cservice.updateCustomer(id,c);
 		}
 		
-		@RequestMapping(value="user",method=RequestMethod.GET)
-			public Customer validatelogin(@RequestBody String mobile,@RequestBody String password) {
+		@RequestMapping(value="user/{mobile}/{password}",method=RequestMethod.GET)
+			public Customer validatelogin(@PathVariable String mobile,@PathVariable String password) {
 				return cservice.validatelogin(mobile,password);
 			}
 		

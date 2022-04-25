@@ -6,11 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
 @Entity
 @Table(name="wallet")
 public class Wallet {
 	@Id
 	private int walletId;
+	
+	@DecimalMin(value = "1.0", message = "Balance must be atleast 1.0")
 	private BigDecimal walletbalance;
 	public Wallet() {
 		super();

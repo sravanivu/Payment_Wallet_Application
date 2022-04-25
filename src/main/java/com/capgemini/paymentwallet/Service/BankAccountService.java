@@ -3,9 +3,13 @@ package com.capgemini.paymentwallet.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+
+import com.capgemini.paymentwallet.Exception.InvalidUserInputException;
 import com.capgemini.paymentwallet.Repository.BankAccountRepository;
+import com.capgemini.paymentwallet.Repository.WalletRepository;
 import com.capgemini.paymentwallet.pojoclasses.BankAccount;
 import com.capgemini.paymentwallet.pojoclasses.Wallet;
 
@@ -13,14 +17,15 @@ import com.capgemini.paymentwallet.pojoclasses.Wallet;
 public class BankAccountService {
 	@Autowired
 	BankAccountRepository barepository;
+	WalletService wwservice;
+	WalletRepository wwrepository;
+	
 
 	public List<BankAccount> getAllBankAccounts() {
 		// TODO Auto-generated method stub
 		return barepository.findAll();
 	}
 	
-
-
 
 	public BankAccount getBankAccountById(int id) {
 		// TODO Auto-generated method stub
@@ -55,21 +60,35 @@ public class BankAccountService {
 
 	}
 
-
-
-
 	public BankAccount addBankAccount(BankAccount ba) {
 		// TODO Auto-generated method stub
 		return barepository.save(ba);
 	}
 
-
-
-
 	public Wallet addBankAccount1(BankAccount ba) {
 		// TODO Auto-generated method stub
 		return barepository.save(ba).getWallet();
 	}
+
+	public BankAccount addBankA(BankAccount ba) {
+		Wallet w=ba.getWallet();	
+		if(wwrepository.existsById(w.getWalletId()) && !barepository.existsById(ba.getAccountNo())) {
+			barepository.save(ba);
+			return ba;
+		}
+		throw new InvalidUserInputException("Wallet doesn't exsists or Account already exists");
+			
+	}
+	
+//	public Wallet (BankAccount bacc) {
+//	Wallet w = bacc.getWallet();
+//
+//	if (wwrepository.existsById(w.getWalletId()) && !((CrudRepository<Wallet,Integer>) wwservice).existsById(bacc.getAccountNo())) {
+//		wwservice.save(bacc);
+//		return w;
+//	}
+//	throw new InvalidUserInputException("Wallet doesn't exsists or Account already exists");
+//}
 	
 
 }

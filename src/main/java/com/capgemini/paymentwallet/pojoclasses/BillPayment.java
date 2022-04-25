@@ -4,20 +4,39 @@ import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 @Entity
 public class BillPayment {
 	@Id
+	
+	@Min(1)
+	@Pattern(regexp="^[0-9]{5}$",message="enter valid bill ID")
 	private int billId;
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(referencedColumnName="walletId",name="WalletId")
+	
+	//@ManyToOne
 	private Wallet wallet;
+	
+	@Enumerated(EnumType.STRING)
 	private BillType billtype;
+	
+	@NotBlank
+	@Min(100)
 	private double amount;
+	
+	
 	private LocalDate paymentDate;
 	public BillPayment() {
 		super();

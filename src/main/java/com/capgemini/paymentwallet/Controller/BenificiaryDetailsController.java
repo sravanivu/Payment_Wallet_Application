@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.paymentwallet.Service.BenificiaryDetailsService;
 import com.capgemini.paymentwallet.pojoclasses.BenificiaryDetails;
-import com.capgemini.paymentwallet.pojoclasses.Customer;
+
+
 
 @RestController
 public class BenificiaryDetailsController {
@@ -44,12 +45,12 @@ public class BenificiaryDetailsController {
 		return bdservice.getBenificiaryDetailsById(id);
 	}
 	//viewallBenificiaryDetails(customer customer):list<BenificiaryDetails>
-	//viewBenificiaryDetails(customer customer):BenificiaryDetails
+	//viewBenificiaryDetails( customer customer):BenificiaryDetails
 	//error
-	/*@RequestMapping(value="bd/{cId}",method=RequestMethod.GET)
-	public BenificiaryDetails getBenificiaryDetailsByCustomerId(@PathVariable int cId,Customer customer) {
-		return bdservice.getBenificiaryDetailsByCustomerId(cId,customer);
+@RequestMapping(value="bd/{cId}",method=RequestMethod.GET)
+	public BenificiaryDetails getBenificiaryDetailsByCustomerId(@PathVariable int cId) {
+		return bdservice.getBenificiaryDetailsByCustomerId(cId);
 	}
-	*/
+	
 
 }

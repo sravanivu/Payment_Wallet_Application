@@ -45,9 +45,11 @@ public class BenificiaryDetailsService {
 		return bdrepository.getBenificiaryDetailsofmobilenumber(mobileNumber);
 	}
 
-	/*public BenificiaryDetails getBenificiaryDetailsByCustomerId(int cId,Customer cus) {
+	
+
+	public BenificiaryDetails getBenificiaryDetailsByCustomerId(int cId) {
 		// TODO Auto-generated method stub
-		return bdrepository.getBenificiaryDetailsByCustomerId(cId,cus);
-	}*/
+		return bdrepository.getBenificiaryDetailsByCustomerId(cId);
+	}
 
 }

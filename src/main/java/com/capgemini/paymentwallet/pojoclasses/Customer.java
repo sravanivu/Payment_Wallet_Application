@@ -4,20 +4,37 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Customer {
 	
 	@Id
+	@NotBlank
+	@Pattern(regexp="^[0-9]{6}$",message="enter valid customer ID")
 	private int cId;
+	
+	@NotBlank
+	@NotNull
+	@Pattern(regexp="^[a-zA-Z]*$",message="enter your valid customer name")
 	private String cName;
+	
+	@Pattern(regexp = "^[6-9]{1}[0-9]{9}$",message = "Enter valid Mobile number ")
+	@NotBlank
 	private String mobile;
+	
+	@NotBlank
+	@Pattern(regexp="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[$@#*\\\\/&!¿?¡+%()=-])(.{8,})",message="give valid password ")
 	private String password;
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(referencedColumnName="walletId",name="WalletId")
 
+	//@ManyToOne
 	private Wallet wallet;
 	public Customer() {
 		super();
