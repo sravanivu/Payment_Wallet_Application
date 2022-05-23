@@ -14,23 +14,22 @@ import com.capgemini.paymentwallet.pojoclasses.BillPayment;
 
 @RestController
 public class BillPaymentController {
-	@Autowired
+	@Autowired(required = true)
 	BillPaymentService bpservice;
-	@RequestMapping(value="billpayemt/getallbp",method=RequestMethod.GET)
-	public List<BillPayment> getAllBillPayments(){
+
+	@RequestMapping(value = "billpaymemt/getallbp", method = RequestMethod.GET)
+	public List<BillPayment> getAllBillPayments() {
 		return bpservice.getAllBillPayments();
 	}
-	//required
-	@RequestMapping(value="billpayment/addbillpayment",method=RequestMethod.POST)
+
+	@RequestMapping(value = "billpayment/addbillpayment", method = RequestMethod.POST)
 	public BillPayment addBillPayment(@RequestBody BillPayment bp) {
-		return addBillPayment(bp);
+		return bpservice.addBillPayment(bp);
 	}
-	//required but taken id on behaf of class
-	@RequestMapping(value="billpayment/getbp/{id}",method=RequestMethod.GET)
+
+	@RequestMapping(value = "billpayment/getbp/{id}", method = RequestMethod.GET)
 	public BillPayment getBillPaymentById(@PathVariable int id) {
 		return bpservice.getBillPaymentById(id);
 	}
-	
-	
 
 }

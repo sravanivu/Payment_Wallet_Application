@@ -8,11 +8,8 @@ import com.capgemini.paymentwallet.pojoclasses.BenificiaryDetails;
 import com.capgemini.paymentwallet.pojoclasses.Customer;
 
 public interface BenificiaryDetailsRepository extends JpaRepository<BenificiaryDetails, Integer> {
-	
-	@Query(value="select bd from BenificiaryDetails bd where bd.mobileNumber=?1")
-	BenificiaryDetails getBenificiaryDetailsofmobilenumber(@Param("mobileNumber")String mobileNumber);
-	
-	@Query(value="select c from Customer c where c.cId=?1")
-	BenificiaryDetails getBenificiaryDetailsByCustomerId(@Param("cId")int cId);
-	
+
+	@Query(value = "select bd from BenificiaryDetails bd where bd.mobileNumber=?1")
+	BenificiaryDetails getBenificiaryDetailsofmobilenumber(@Param("mobileNumber") String mobileNumber);
+
 }

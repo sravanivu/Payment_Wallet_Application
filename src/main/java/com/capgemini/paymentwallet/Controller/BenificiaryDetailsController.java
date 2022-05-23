@@ -12,45 +12,35 @@ import org.springframework.web.bind.annotation.RestController;
 import com.capgemini.paymentwallet.Service.BenificiaryDetailsService;
 import com.capgemini.paymentwallet.pojoclasses.BenificiaryDetails;
 
-
-
 @RestController
 public class BenificiaryDetailsController {
-	@Autowired
+	@Autowired(required = true)
 	BenificiaryDetailsService bdservice;
-	//
-	@RequestMapping(value="bd/getall",method=RequestMethod.GET)
-	public List<BenificiaryDetails> getAllBenificiaryDetails(){
+
+	@RequestMapping(value = "bd/getall", method = RequestMethod.GET)
+	public List<BenificiaryDetails> getAllBenificiaryDetails() {
 		return bdservice.getAllBenificiaryDetails();
 	}
-	//required
-	@RequestMapping(value="bd/addbd",method=RequestMethod.POST)
+
+	@RequestMapping(value = "bd/addbd", method = RequestMethod.POST)
 	public BenificiaryDetails addBenificiaryDetails(@RequestBody BenificiaryDetails bd) {
 		return bdservice.addBenificiaryDetails(bd);
 	}
-	
-	//required
-	@RequestMapping(value="bd/delete",method=RequestMethod.DELETE)
-	public String deleteBenificiaryDetails(@RequestBody int id) {
+
+	@RequestMapping(value = "bd/delete/{id}", method = RequestMethod.DELETE)
+	public String deleteBenificiaryDetails(@PathVariable int id) {
 		return bdservice.deleteBenificiaryDetails(id);
 	}
-	//required
-	@RequestMapping(value="bd/get/{mobileNumber}",method=RequestMethod.GET)
+
+	@RequestMapping(value = "bd/get/{mobileNumber}", method = RequestMethod.GET)
 	public BenificiaryDetails getBenificiaryDetailsofmobilenumber(@PathVariable String mobileNumber) {
 		return bdservice.getBenificiaryDetailsofmobilenumber(mobileNumber);
 	}
-	
-	@RequestMapping(value="bd/getbd/{id}",method=RequestMethod.GET)
+
+	@RequestMapping(value = "bd/getbd/{id}", method = RequestMethod.GET)
 	public BenificiaryDetails getBenificiaryDetailsById(@PathVariable int id) {
 		return bdservice.getBenificiaryDetailsById(id);
 	}
-	//viewallBenificiaryDetails(customer customer):list<BenificiaryDetails>
-	//viewBenificiaryDetails( customer customer):BenificiaryDetails
-	//error
-@RequestMapping(value="bd/{cId}",method=RequestMethod.GET)
-	public BenificiaryDetails getBenificiaryDetailsByCustomerId(@PathVariable int cId) {
-		return bdservice.getBenificiaryDetailsByCustomerId(cId);
-	}
-	
 
 }
+

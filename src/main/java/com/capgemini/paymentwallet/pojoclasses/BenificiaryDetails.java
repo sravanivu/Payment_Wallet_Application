@@ -4,28 +4,24 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 
-
 @Entity
 public class BenificiaryDetails {
+
 	@Id
-	
 	private int benificiaryId;
-	
-	@Pattern(regexp="^[A-Za-z _.]{3,25}$",message = "Name should be in the range of 3 to 25 characters")
+
+	@Pattern(regexp = "^[A-Za-z _.]{3,25}$", message = "Name should be in the range of 3 to 25 characters")
 	private String name;
-	@Pattern(regexp = "^[6-9]{1}[0-9]{9}$",
-			message = "Enter valid Mobile Number")
+	@Pattern(regexp = "^[6-9]{1}[0-9]{9}$", message = "Enter valid Mobile Number")
 	private String mobileNumber;
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(referencedColumnName="walletId",name="WalletId")
-	
-	//@ManyToOne
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(referencedColumnName = "walletId", name = "WalletId")
+
 	private Wallet wallet;
 
 	public BenificiaryDetails() {
@@ -77,6 +73,5 @@ public class BenificiaryDetails {
 		return "BenificiaryDetails [benificiaryId=" + benificiaryId + ", name=" + name + ", mobileNumber="
 				+ mobileNumber + ", wallet=" + wallet + "]";
 	}
-	
 
 }

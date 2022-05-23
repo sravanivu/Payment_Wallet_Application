@@ -15,18 +15,20 @@ import com.capgemini.paymentwallet.pojoclasses.Transaction;
 
 @RestController
 public class TransactionController {
-	@Autowired
+	@Autowired(required = true)
 	TransactionService tservice;
-	
-	@RequestMapping(value="transaction/addt",method=RequestMethod.POST)
+
+	@RequestMapping(value = "transaction/addt", method = RequestMethod.POST)
 	public Transaction addTransaction(@RequestBody Transaction t) {
 		return tservice.addTransaction(t);
 	}
-	@RequestMapping(value="transaction/{transactionId}",method=RequestMethod.GET)
+
+	@RequestMapping(value = "transaction/{transactionId}", method = RequestMethod.GET)
 	public Transaction getTransactionByTId(@PathVariable int transactionId) {
 		return tservice.getTransactionByTId(transactionId);
 	}
-	@RequestMapping(value="transaction/gett",method=RequestMethod.GET)
+
+	@RequestMapping(value = "transaction/gett", method = RequestMethod.GET)
 	public List<Transaction> getAllTransaction() {
 		return tservice.getAllTransaction();
 	}
